@@ -1,0 +1,83 @@
+﻿@model Youtube.Models.YoutubeResult
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Thumbnails)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Type == TypeItem.Video)
+            {
+                <a href="https://www.youtube.com/watch?v=@Model.YoutubeId" target="_blank"><img src="@Html.Raw(Model.Thumbnails)" /></a>
+            }
+            else
+            {
+                <img src="@Html.Raw(Model.Thumbnails)" />
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.YoutubeId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.YoutubeId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ChannelTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ChannelTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LiveBroadcastContent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LiveBroadcastContent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PublishedAtRaw)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PublishedAtRaw)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PublishedAt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PublishedAt)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ETag)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ETag)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
