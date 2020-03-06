@@ -64,7 +64,7 @@
                     {{ item.publishedAt }}
                 </td>
                 <td>
-                    <a :href="'/Home/detalhes/?YoutubeId='+item.youtubeId+'&tipo='+item.type" class="btn btn-info">Detalhes</a>
+                    <a :href="'/Home/detalhes/?YoutubeId='+item.youtubeId+'&tipo='+item.type" target="_blank" class="btn btn-info">Detalhes</a>
                     <button @@click="AddItem(key, item.type,item.youtubeId)" class="btn btn-success">Adicionar a minha lista</button>
                 </td>
             </tr>
@@ -81,25 +81,34 @@
             AddItem(key, tipo, youtubeId) {
                 this.loading = true;
                 $.post("/MeusItens/AddItem", { tipo: tipo, YoutubeId: youtubeId })
-                    .done(function (data) {
+                    .done(function (data) {                        
                         swal({
                             icon: 'success',
                             title: 'Inserido com sucesso',
                             buttons: false,
                             timer: 1500
-                        });
+                        });                        
                     });
                 this.videos.splice(key, 1);
                 this.loading = false;
             },
             Pesquisar() {
                 if (this.pesquisa != "") {
-                    this.loading = true;
-                    axios
-                        .get('/Home/Pesquisar/?q=' + this.pesquisa)
-                        .then(response => (this.videos = response.data));
-                    this.loading = false;
-                } else {                    
+                    try {
+                        this.loading = true;
+                        axios
+                            .get('/Home/Pesquisar/?q=' + this.pesquisa)
+                            .then(response => (this.videos = response.data));
+                        this.loading = false;
+                    } catch (error) {
+                        swal({
+                            icon: 'warning',
+                            title: error,
+                            timer: 2500
+                        });
+                        this.loading = false;
+                    }
+                } else {
                     swal({
                         icon: 'warning',
                         title: 'Informe a palavra chave!',

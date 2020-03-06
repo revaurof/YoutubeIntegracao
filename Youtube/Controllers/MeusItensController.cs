@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using Youtube.Models;
 using Youtube.Services;
 
@@ -29,7 +25,7 @@ namespace Youtube.Controllers
             var item = _minhaPlaylist.BuscaPorId(id);
             return View(item);
         }
-        
+
         public JsonResult AddItem(TypeItem tipo, string YoutubeId)
         {
             var item = _youtubeService.BuscarNoYouTubePorIDAsync(tipo, YoutubeId).Result;
